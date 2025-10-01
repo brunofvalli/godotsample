@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://5jbuo4thnnbv"]
+[gd_scene load_steps=9 format=3 uid="uid://5jbuo4thnnbv"]
+
+[ext_resource type="Script" uid="uid://cs05hkx23qn0a" path="res://Scripts/Player.cs" id="1_3bxa3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bk35t"]
 sky_top_color = Color(0.18036178, 0.33157563, 0.80870813, 1)
@@ -14,6 +16,12 @@ background_mode = 2
 sky = SubResource("Sky_3bxa3")
 tonemap_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r48yj"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3bxa3"]
+size = Vector3(10, 0.05, 10)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bk35t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bk35t"]
@@ -28,11 +36,18 @@ environment = SubResource("Environment_r48yj")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 4.873723, 4.3987436, -7.685554)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-size = Vector3(3.9228516, 0.06933594, 5.649414)
+[node name="FloorCSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(10, 0.05, 10)
+material = SubResource("StandardMaterial3D_r48yj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorCSGBox3D"]
+
+[node name="FloorCollisionShape3D" type="CollisionShape3D" parent="FloorCSGBox3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_3bxa3")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.9999978, 0, 0.002111882, 0, 1, 0, -0.002111882, 0, 0.9999978, 0, 1.2201376, 1.4882121)
+script = ExtResource("1_3bxa3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_bk35t")
