@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://5jbuo4thnnbv"]
+[gd_scene load_steps=6 format=3 uid="uid://5jbuo4thnnbv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bk35t"]
 sky_top_color = Color(0.18036178, 0.33157563, 0.80870813, 1)
@@ -15,6 +15,9 @@ sky = SubResource("Sky_3bxa3")
 tonemap_mode = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bk35t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bk35t"]
+albedo_color = Color(1, 0, 0.10980392, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -36,6 +39,7 @@ shape = SubResource("CapsuleShape3D_bk35t")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1.9210889, 0, 0, 0, 1, 0, 0, 0)
+material = SubResource("StandardMaterial3D_bk35t")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.9999978, 0, 0.002111882, 0, 1, 0, -0.002111882, 0, 0.9999978, 0, 1.2201376, 4.4873877)
